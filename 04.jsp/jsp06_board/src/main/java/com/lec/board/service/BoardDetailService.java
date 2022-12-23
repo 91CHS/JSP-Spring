@@ -11,18 +11,13 @@ public class BoardDetailService {
 	public BoardBean getBoard(int board_num) {
 		
 		BoardBean board = null;
-		
-		//select * from board where board_num = 1;  DAO에 쓸 예정
-		
-		Connection conn =JDBCUtility.getConnection();
+		Connection conn = JDBCUtility.getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(conn);
 		int updateCount = boardDAO.updateReadCount(board_num);
 		if(updateCount>0) JDBCUtility.commit(conn); else JDBCUtility.rollback(conn);
 		board = boardDAO.selectBoard(board_num);
 		JDBCUtility.close(conn, null, null);
-		
-		
 		return board;
 	}
 
