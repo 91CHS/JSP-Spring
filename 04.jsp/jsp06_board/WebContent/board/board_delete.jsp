@@ -6,7 +6,7 @@
 	String p = (String) request.getParameter("p");
 	String f = (String) request.getParameter("f");
 	String q = "";
-	
+	 
 	try {
 		q = URLEncoder.encode(request.getParameter("q"));
 	} catch(Exception e) {

@@ -1,4 +1,4 @@
-<%@page import="com.lec.board.vo.PageInfo"%>
+<%@page import="com.lec.board.vo.PageInfo"%> 
 <%@page import="java.net.URLEncoder"%>
 <%@page import="com.lec.board.vo.BoardBean"%>
 <%@page import="java.util.ArrayList"%>
