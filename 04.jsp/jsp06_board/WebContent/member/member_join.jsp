@@ -1,4 +1,3 @@
-<%@page import="java.net.URLEncoder"%> 
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -12,7 +11,7 @@
 		crossorigin="anonymous">  
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<style>
+		<style>
 		.login-btn {
 			clear: black;
 			background-color: #FFC312
@@ -30,98 +29,60 @@
 		}
 	</style>
 </head>
-<%
-	String p = request.getParameter("p");
-	String f = request.getParameter("f");
-	
-	String q = "";
-	try {
-		q = URLEncoder.encode((String) request.getParameter("q"));		
-	} catch(Exception e) {
-		q = "";
-	}
-%>
-<c:set var="p" value="<%=p%>"/>
-<c:set var="f" value="<%=f%>"/>
-<c:set var="q" value="<%=q%>"/>
 <body>
-	
-	<div class="container" align="center">
-	
+		<div class="container" align="center">
+
 		<div class="jumbotron">
-			<h3>게시판글쓰기</h3>
-			<p>게시판글쓰기 페이지 입니다. 클을 작성해 주세요!!</p>
+			<h3>회원가입</h3>
+			<p>회원가입 페이지 입니다. 글을 작성해 주세요!!</p>
 		</div>
 	
-		<form action="boardWrite.bo?p=${p}p&f=${f}&q=${q}" method="post" class="form-group" 
-			name="boardform" enctype="multipart/form-data">
+		<form action="membersuccess.mb?" method="post" class="form-group" 
+			name="memberform" >   <!-- enctype="multipart/form-data" -->
 			
 			<div class="form-group input-group">
 				<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user"></i></span></div>
-				<input type="text" class="form-control" name="board_name" id="board_name" value="홍길동" required
-				placeholder="작성자이름을 입력하세요...."/>
+				<input type="text" class="form-control" name="member_id" id="member_id" value="" required
+				placeholder="아이디를 입력하세요...."/>
 			</div>
 			
 			<div class="form-group input-group">
 				<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-key"></i></span></div>
-				<input type="password" class="form-control" name="board_pass" id="board_pass" value="12345" required
+				<input type="password" class="form-control" name="member_pw" id="member_pw" value="1" required
 				placeholder="비밀번호를 입력하세요...."/>
 			</div>
 			
 			<div class="form-group input-group">
 				<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-clipboard"></i></span></div>
-				<input type="text" class="form-control" name="board_subject" id="board_subject" value="<%= new java.util.Date() %>" required
-				placeholder="제목을 입력하세요...."/>
+				<input type="text" class="form-control" name="member_name" id="member_name" value="" required
+				placeholder="이름을 입력하세요...."/>
 			</div>
 			
 			<div class="form-group input-group">
 				<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-comment-dots"></i></span></div>
-				<textarea class="form-control" name="board_content" id="board_content" cols="40" rows="15" required
-				placeholder="글내용을 입력하세요....">글 내용...</textarea>
+				<input type="text" class="form-control" name="member_age" id="member_age" value="1" required
+				placeholder="나이를 입력하세요....">
+			</div>
+			
+		    <div class="form-group input-group">
+				<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-clipboard"></i></span></div>
+				<input type="text" class="form-control" name="member_gender" id="member_gender" value="" required
+				placeholder="성별을 입력하세요...."/>
 			</div>
 			
 			<div class="form-group input-group">
-				<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span></div>
-				<div class="custom-file">
-					<input type="file" class="custom-file-input" name="board_file" id="board_file"/>
-					<label for="board_file" class="custom-file-label" style="text-align: left">업로드할 파일을 선택하세요!!</label>
-				</div>
+				<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-clipboard"></i></span></div>
+				<input type="text" class="form-control" name="member_email" id="member_email" value="" required
+				placeholder="이메일을 입력하세요...."/>
 			</div>
+			
+
 			
 			<div class="form-group mt-md-5">
 				<input type="reset" class="btn btn-success float-right login-btn ml-sm-2" value="새로고침"/>
-				<input type="submit" class="btn btn-success float-right login-btn" value="글등록"/>
+				<input type="submit" class="btn btn-success float-right login-btn" value="등록"/>
 			</div>
 		</form>
 	</div>
-	
-<!-- <script>
-		 $(".custom-file-input").on("change", function() {
-			 // var fileName = $(this).vale();               // 전체파일명
-			 var fileName = $(this).val().split("\\").pop(); // 파일명만
-			 $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-		 })
-	</script>  -->
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -11,6 +11,18 @@
 		password="12345"
 		maxActive="50"
 	/>
+	
+		<Resource 
+		name="jdbc/Member"
+		auth="Container"
+		type="javax.sql.DataSource"
+		factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
+		driverClassName="org.mariadb.jdbc.Driver"
+		url="jdbc:mariadb://localhost:3306/member"
+		username="root"
+		password="12345"
+		maxActive="50"
+	/>
 <!-- 
 	1. name    : JNDI로 호출될 이름을 설정, 접근방법 java:comp/env/jdbc/Board
 	2. auth    : DBCP을 관리할 관리자를 지정(Container or Application)

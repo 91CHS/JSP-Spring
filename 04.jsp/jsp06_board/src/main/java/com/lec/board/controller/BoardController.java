@@ -53,6 +53,9 @@ public class BoardController extends HttpServlet{
 		String command = requestURI.substring(contextPath.length());
 		// http://localhost:8088/jsp06_board/boardWriteForm.bo
 		// System.out.println(requestURI + "\n" + contextPath + "\n" + command);
+	
+		
+					
 		
 		if(command.equals("/boardWriteForm.bo")) {
 			forward = new ActionFoward();

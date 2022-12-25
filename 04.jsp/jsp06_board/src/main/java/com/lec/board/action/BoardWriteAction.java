@@ -22,7 +22,7 @@ public class BoardWriteAction implements Action {
 		ActionFoward forward = null;
 		BoardBean board = null;
 		String realFolder = "";
-		String saveFolder = "C:\\Users\\ezen\\Desktop\\mh_db\\99.temp\\";
+		String saveFolder = "C:/Users/zxpo8/Desktop/CHS/99.temp/";
 		int filesize = 1024*1024*5;
 		
 		String p = req.getParameter("p");
@@ -46,7 +46,7 @@ public class BoardWriteAction implements Action {
 			board.setBoard_file(multi.getOriginalFileName((String) multi.getFileNames().nextElement()));
 			
 			
-			System.out.println("========> " + board.getBoard_file());
+			//System.out.println("========> " + board.getBoard_file());
 			
 			
 			BoardWriteService boardWriteService = new BoardWriteService();
