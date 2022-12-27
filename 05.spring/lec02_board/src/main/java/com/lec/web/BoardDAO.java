@@ -41,8 +41,32 @@ public class BoardDAO {
 		}
 		
 	}
-	public void deleteBoard(BoardVO vo) {}
-	public void updateBoard(BoardVO vo) {}
+	public void deleteBoard(BoardVO vo) {
+		try {
+			conn = JDBCUtility.getConnetion();
+			pstmt = conn.prepareStatement(delete);
+			pstmt.setInt(1, vo.getSeq());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+	}
+	public void updateBoard(BoardVO vo) {
+		try {
+			conn = JDBCUtility.getConnetion();
+			pstmt = conn.prepareStatement(update);
+			pstmt.setString(1, vo.getTitle());
+			pstmt.setString(2, vo.getContent());
+			pstmt.setInt(3, vo.getSeq());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+	}
 	public BoardVO getBoard(BoardVO vo) {return null;}
 	public List<BoardVO> getBoardList(BoardVO vo) {
 		
@@ -53,7 +77,7 @@ public class BoardDAO {
 			pstmt = conn.prepareStatement(bdList);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				BoardVO board = new  BoardVO();
+				BoardVO board = new BoardVO();
 				board.setSeq(rs.getInt("seq"));
 				board.setTitle(rs.getString("title"));
 				board.setWriter(rs.getString("writer"));
