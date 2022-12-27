@@ -14,6 +14,6 @@ public class TVUser {
 			tv.volumnUp();
 			tv.volumnDown();
 			
-
+			factory.close();
 		}
 }

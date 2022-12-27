@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--  
+	<bean id="tv" class="com.lec.basic.poly4.LGTV">      property가 setter와 대응 
+		<property name="speaker" ref="apple"/>           setSpeaker()와 대응 
+		<property name="price" value="250000"/>          setPrice()와 대응 
+	</bean>
+-->
+	
+	<!-- namespace:p 선택한 경우 (위의 bean을 간단히 할 수 있다.)-->
+	
+	<bean id="tv" class="com.lec.basic.poly4.LGTV"
+	      p:speaker-ref="apple" 
+	      p:price="250000"/>
+	
+	<bean id="apple" class="com.lec.basic.poly4.AppleSpeaker"/>
+	<bean id="sonny" class="com.lec.basic.poly4.SonnySpeaker"/>
+
+
+</beans>
