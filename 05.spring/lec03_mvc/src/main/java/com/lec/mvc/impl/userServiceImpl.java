@@ -11,7 +11,7 @@ import com.lec.mvc.vo.PageInfo;
 import com.lec.mvc.vo.UserVO;
 
 @Service("userSerivce")
-public class userServiceImpl implements UserService {
+public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDAO userDAO;
@@ -28,13 +28,13 @@ public class userServiceImpl implements UserService {
 	}
 
 	@Override
-	public int updateUser(String id) {
-		return 0;
+	public int updateUser(UserVO user) {
+		return userDAO.updateUser(user);
 	}
 
 	@Override
 	public UserVO selectUser(String id) {
-		return null;
+		return userDAO.getUser(id);
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class userServiceImpl implements UserService {
 
 	@Override
 	public PageInfo getPageInfo(int currentPage, int perPage) {
-		return null;
+		return userDAO.getPageInfo("user", currentPage, perPage);
 	}
 
 }
