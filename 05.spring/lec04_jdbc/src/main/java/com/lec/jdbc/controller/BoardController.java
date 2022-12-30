@@ -2,7 +2,10 @@ package com.lec.jdbc.controller;
 
 
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,21 +24,29 @@ public class BoardController {
 	private BoardService boardService;
 	
 	
-	@RequestMapping(value="/getBoardList.do")
+	@RequestMapping("/getBoardList.do")
 	public String getBoardList(BoardVO board, Model model,
 			@RequestParam(defaultValue="1") int p,
-			@RequestParam(defaultValue="10") int perPage) {
+			@RequestParam(defaultValue="10") int perPage,HttpSession sess) {
 		
 		PageInfo pageInfo = boardService.getPageInfo(p, perPage);
+			
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("boardList", boardService.getBoardList(p, perPage));
 		return "board/board_list.jsp";
 	}
-	
+
 	@RequestMapping("insertBoard.do")
 	public String insertBoard(BoardVO board) {
 		boardService.insertBoard(board);
-		return "getBoardList.do";
+		return "redirect:getBoardList.do";
+	}
+	
+	@RequestMapping("selectBoard.do")
+	public String selectBoard(@RequestParam int seq , Model model) {
+		boardService.cntBoard(seq);
+		model.addAttribute("board", boardService.selectBoard(seq));
+		return  "board/board_select.jsp?seq=" + seq;
 	}
 
 	@RequestMapping(value="/deleteBoard.do", method=RequestMethod.GET)
@@ -46,7 +57,7 @@ public class BoardController {
 	@RequestMapping(value="/deleteBoard.do", method=RequestMethod.POST)
 	public String deleteBoard(@RequestParam int seq) {
 		boardService.deleteBoard(seq);
-		return "getBoardList.do";	
+		return "redirect:getBoardList.do";	
 	}
 	
 	
@@ -59,6 +70,9 @@ public class BoardController {
 	@RequestMapping(value="/updateBoard.do", method=RequestMethod.POST)
 	public String updateBoard(BoardVO board) { 
 		boardService.updateBoard(board);
-		return "getBoardList.do";
+		return "redirect:getBoardList.do";
 	}
+	
+	
+	
 }

@@ -21,7 +21,7 @@
 	
 	response.setContentType(sMimeType);		// 이부분도 외워야함.
 	response.setHeader("Content-Transfer-Encoding", "binary");
-	response.setHeader("Content-Transfer-Disposition", "attachment; filename=");
+	response.setHeader("Content-Disposition", "attachment; filename = " + sEncoding1);
 	
 	ServletOutputStream os = response.getOutputStream();
 	int numRead;

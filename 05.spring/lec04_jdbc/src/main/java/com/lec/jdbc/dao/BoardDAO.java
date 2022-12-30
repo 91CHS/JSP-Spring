@@ -38,7 +38,11 @@ public class BoardDAO {
 		if(totalCount>0) {
 			totalPages = (int)(totalCount / perPage) + ((totalCount % perPage == 0) ? 0 : 1);
 			startPage = (int)(currentPage / perPage) * perPage + 1 + ((currentPage % perPage == 0) ? -perPage : 0);
-			endPage = (startPage >= totalPages) ? totalPages : startPage + perPage -1;
+//			endPage = (startPage >= totalPages) ? totalPages : startPage + perPage -1;
+		 if(startPage+perPage-1>=totalPages) { endPage = totalPages;            
+		         }else {
+		            endPage = (startPage >= totalPages) ? totalPages : startPage + perPage - 1;
+		         }
 		}
 
 		pageInfo.setTotalCount(totalCount);
@@ -57,9 +61,10 @@ public class BoardDAO {
 		Object[] args = { seq };
 		return (BoardVO) jdbcTemplate.queryForObject(sql, args, new BoardRowMapper());
 	}
-	
+
 	public List<BoardVO> getBoardList(int currentPage, int perPage){
 		String sql = "select * from board limit ?, ?";
+		
 		Object[] args = { (currentPage-1)*perPage,  perPage};
 		return jdbcTemplate.query(sql,args, new BoardRowMapper());
 	}
@@ -81,6 +86,13 @@ public class BoardDAO {
 		jdbcTemplate.update(sql, board.getTitle(),board.getWriter(),board.getContent(), board.getSeq());
 	}
 	
+	public void getCnt(int seq) {
+		String sql = "update board set cnt=cnt+1 where seq = ?";
+		Object[] args = { seq };
+		jdbcTemplate.update(sql, args);
+		
+		
+	}
 	
 	
 	

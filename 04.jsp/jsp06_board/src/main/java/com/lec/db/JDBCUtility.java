@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 /*
 	JNDI(Java Naming and Directory Interface)
 	
-	디렉토리서비스에서 제공하는 데이터 및 객체를 검색하기위하 API이다.
+	디렉토리서비스에서 제공하는 데이터 및 객체를 검색하기위한 API이다.
 	즉, 쉽게 이야기하면 외부에 있는 객체를 내부로 가져오기 위한 기법이다.
 	
 	tomcat서버와 같은 WAS는 특정폴더에 데이터소스(라이브러리)등을 사용하기

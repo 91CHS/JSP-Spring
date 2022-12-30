@@ -27,7 +27,7 @@ public class LoginController {
 	public String login(UserVO userVO, UserDAO userDAO, HttpSession sess) {
 		
 		UserVO user = userDAO.getUser(userVO.getId());
-		
+
 		if(user == null) {
 			sess.setAttribute("isLoginSuccess", false);
 			return "login/login.jsp";

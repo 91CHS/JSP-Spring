@@ -1,5 +1,14 @@
+<%@page import="com.lec.jdbc.vo.UserVO"%>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%
+boolean log = (boolean)session.getAttribute("isAdmin");
+UserVO user = (UserVO)session.getAttribute("user");
+%>
+
+<c:set var="userName" value="<%=user.getName() %>"/>
+<c:set var="admin" value="<%=log %>"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,15 +44,16 @@
 			<tbody>
 			<c:forEach  var="board" items="${ boardList }">
 				<tr>
-					<td scope="row"><a href="updateBoard.do?seq=${ board.getSeq() }">${ board.getSeq() }</a></td>
+					<td scope="row">${ board.getSeq() }</td>
 					<td>${ board.getTitle() }</td>
 					<td>${ board.getWriter() }</td>
-					<td>${ board.getContent() }</td>
+					<td scope="row"><a href="selectBoard.do?seq=${ board.getSeq() }">${ board.getContent() }</a></td>
 					<td>${ board.getRegdate() }</td>
 					<td>${ board.getCnt() }</td>
 					<td align="center">
-						<a href="deleteBoard.do?seq=${ board.getSeq() }" class="btn btn-danger"><i class="fas fa-trash"></i>
-						</a>
+					<c:if test="${userName==board.getWriter() || admin}">
+					<a href="deleteBoard.do?seq=${ board.getSeq() }" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+					</c:if>
 					</td>
 				</tr>
 			</c:forEach>
@@ -64,25 +74,27 @@
 				
 				<ul class="pagination justify-content-center">					
 					<c:if test="${ pageInfo.getStartPage() != 1 }">
-						<li class="page-item"><a href="getboardList.do?p=1" class="page-link"><i class="fas fa-fast-backward"></i></a></li>
-						<li class="page-item"><a href="getboardList.do?p=${ pageInfo.getStartPage() - 10 }" class="page-link"><i class="fas fa-backward"></i></a></li>				
+						<li class="page-item"><a href="getBoardList.do?p=1" class="page-link"><i class="fas fa-fast-backward"></i></a></li>
+						<li class="page-item"><a href="getBoardList.do?p=${ pageInfo.getStartPage() - 10 }" class="page-link"><i class="fas fa-backward"></i></a></li>				
 					</c:if>
 				
 					<c:set var="cp" value="${ pageInfo.getCurrentPage() }"/>
 				
 					<c:forEach var="page" begin="${ pageInfo.getStartPage() }" end="${ pageInfo.getEndPage() }">
-						<li class="page-item ${ (cp==page)  ? 'active' : ''}"><a href="getboardList.do?p=${page}" class="page-link">${page}</a></li>
+						<li class="page-item ${ (cp==page)  ? 'active' : ''}"><a href="getBoardList.do?p=${page}" class="page-link">${page}</a></li>
 					</c:forEach>
 					<c:if test="${ pageInfo.getEndPage() < pageInfo.getTotalPages() }">
-						<li class="page-item"><a href="getboardList.do?p=${ pageInfo.getEndPage() + 1 }" class="page-link"><i class="fas fa-forward"></i></a></li>				
-						<li class="page-item"><a href="getboardList.do?p=${ pageInfo.getTotalPages() }" class="page-link"><i class="fas fa-fast-forward"></i></a></li>				
+						<li class="page-item"><a href="getBoardList.do?p=${ pageInfo.getEndPage() + 1 }" class="page-link"><i class="fas fa-forward"></i></a></li>				
+						<li class="page-item"><a href="getBoardList.do?p=${ pageInfo.getTotalPages() }" class="page-link"><i class="fas fa-fast-forward"></i></a></li>				
 					
 					</c:if>
+	<a href="logout.do" class="btn btn-primary" style="float:right">로그아웃</a>
 				</ul>
 						
 			</div>
 		</div>
-	</div>	
+	</div>
+	
    
    	<!--게시판등록 modal form  -->
 	<div id="addboard" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tableindex="-1"
@@ -104,8 +116,9 @@
 							<input type="text" name="title" class="form-control" id="title" required placeholder="제목을 입력하세요....">
 						</div>
 						<div class="input-group mb-3">
-							<div class="input-group-text"><i class="fas fa-address-book"></i></div>
-							<input type="text" name="writer" class="form-control" id="writer" required placeholder="이름을 입력하세요....">
+							<div class="input-group-text"><i class="fas fa-address-book"></i></div>    
+						    <input type="text" class="form-control" readonly placeholder="${userName}">       
+					     	<input type="hidden" name="writer" id= "writer" value="${userName}">
 						</div>
 						<div class="input-group mb-3">
 							<div class="input-group-text"><i class="fas fa-kiwi-bird"></i></div>

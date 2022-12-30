@@ -50,6 +50,12 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 
+	@Override
+	public void cntBoard(int seq) {
+		boardDAO.getCnt(seq);
+	}
+
+
 
 
 }

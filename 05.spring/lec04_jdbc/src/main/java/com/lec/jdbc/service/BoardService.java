@@ -11,7 +11,9 @@ public interface BoardService {
 	void insertBoard(BoardVO board);
 	void deleteBoard(int seq);
 	void updateBoard(BoardVO board);
+	void cntBoard(int seq);
 	BoardVO selectBoard(int seq);
 	List<BoardVO> getBoardList(int currentPage, int perPage);
 	PageInfo getPageInfo(int currentPage, int perPage);
+	
 }

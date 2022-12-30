@@ -1,7 +1,6 @@
 <%@page import="com.lec.jdbc.vo.UserVO"%>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <%
 boolean log = (boolean)session.getAttribute("isAdmin");
 UserVO user = (UserVO)session.getAttribute("user");
@@ -9,6 +8,7 @@ UserVO user = (UserVO)session.getAttribute("user");
 
 <c:set var="userName" value="<%=user.getName() %>"/>
 <c:set var="admin" value="<%=log %>"/>
+
 
 <!DOCTYPE html>
 <html>
@@ -25,13 +25,13 @@ UserVO user = (UserVO)session.getAttribute("user");
 <body>
    <div class="container" align="center">
       <div class="mt-4 p-5 bg-primary text-white rounded">
-         <h3>Board Update</h3>
+         <h3>제목</h3>
          <p>상세설명......................</p>
          
       </div>
       <br>
       
-      <form action="updateBoard.do" method="post">
+      <form action="updateBoard.do" method="get">
 		
 			<div class="input-group-text mb-3">
 				<div class="input-group-text"><i class="fas fa-user"></i></div>
@@ -40,22 +40,25 @@ UserVO user = (UserVO)session.getAttribute("user");
 			
 			<div class="input-group-text mb-3">
 				<div class="input-group-text"><i class="fas fa-user"></i></div>
-				<input type="text" name="title" id="title" class="form-control" value="${ board.getTitle() }" required>
+				<input type="text" name="title" id="title" class="form-control" value="${ board.getTitle() }" disabled>
 			</div>
-
+			
 			<div class="input-group-text mb-3">
 				<div class="input-group-text"><i class="fas fa-user"></i></div>
-				<input type="text" name="writer" id="writer" class="form-control" value="${ board.getWriter() }" required>
+				<input type="text" name="writer" id="writer" class="form-control" value="${ board.getWriter() }" disabled>
 			</div>
 	
 			<div class="input-group-text mb-3">
 				<div class="input-group-text"><i class="fas fa-user"></i></div>
-				<input type="text" name="content" id="content" class="form-control" value="${ board.getContent() }" required>
+				<input type="text" name="content" id="content" class="form-control" value="${ board.getContent() }" disabled>
 			</div>
 			
 			<input type="hidden" name="seq" id="seq" class="form-control" value="${ board.getSeq() }">
+			<input type="hidden" name="title" id="title" class="form-control" value="${ board.getTitle() }">
+			<input type="hidden" name="writer" id="writer" class="form-control" value="${ board.getWriter() }">
+			<input type="hidden" name="content" id="content" class="form-control" value="${ board.getContent() }">
 			<c:if test="${userName==board.getWriter() || admin}">
-			<button type="submit" class="btn btn-primary text-white"><b>"${ board.getSeq() }"</b>를 수정하겠습니까?</button>
+			<button type="submit" class="btn btn-primary text-white"><b>수정하기</b></button>
 			</c:if>
 			<a href="getBoardList.do" class="btn btn-primary text-white"> <b>돌아가기 </b></a>
 		</form>
