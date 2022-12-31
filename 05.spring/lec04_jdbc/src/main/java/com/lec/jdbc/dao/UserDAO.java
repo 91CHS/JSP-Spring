@@ -59,7 +59,11 @@ public class UserDAO {
 	public UserVO getUser(String id) {
 		String sql = "select * from user where id = ?";
 		Object[] args = { id };
-		return (UserVO) jdbcTemplate.queryForObject(sql, args, new UserRowMapper());
+		try {
+			return (UserVO) jdbcTemplate.queryForObject(sql, args, new UserRowMapper());
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	public List<UserVO> getUserList(int currentPage, int perPage) {	

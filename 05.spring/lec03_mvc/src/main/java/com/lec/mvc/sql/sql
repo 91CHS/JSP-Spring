@@ -1,3 +1,12 @@
+create database spring default character set utf8;
+
+
+create table board (
+ seq int primary key
+ , title varchar(200)
+ , writer varchar(20) not null , content varchar(2000) not null , regdate date default sysdate()
+ , cnt int default 0
+);
 CREATE TABLE USER (
   ID             varchar(50) NOT NULL,
   PASSWORD    varchar(30) NOT NULL,
@@ -6,7 +15,6 @@ CREATE TABLE USER (
   PRIMARY KEY (ID)
 );
 
-insert into user (id, password, name, role) values('admin@gmail.com', '12345', 'administrator', "admin");
 
 DELIMITER //
 BEGIN NOT ATOMIC
@@ -17,5 +25,7 @@ BEGIN NOT ATOMIC
       set i = i + 1;
    end while;
 END;
+
+insert into users (id, password, name, role) values('admin@gmail.com', '12345', 'administrator', "admin");
 
 select count(*) from user;

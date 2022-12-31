@@ -11,7 +11,7 @@ import com.lec.mvc.vo.PageInfo;
 import com.lec.mvc.vo.UserVO;
 
 @Service("userSerivce")
-public class UserServiceImpl implements UserService {
+public class userServiceImpl implements UserService {
 
 	@Autowired
 	private UserDAO userDAO;

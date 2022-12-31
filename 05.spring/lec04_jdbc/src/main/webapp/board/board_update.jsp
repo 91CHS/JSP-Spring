@@ -26,7 +26,7 @@ UserVO user = (UserVO)session.getAttribute("user");
    <div class="container" align="center">
       <div class="mt-4 p-5 bg-primary text-white rounded">
          <h3>Board Update</h3>
-         <p>상세설명.....................</p>
+         <p>상세설명......................</p>
          
       </div>
       <br>
