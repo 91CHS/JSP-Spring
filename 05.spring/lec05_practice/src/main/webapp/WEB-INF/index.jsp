@@ -21,6 +21,7 @@
       </div>
       <br>
       
+      <a href="login.do" class="btn btn-primary">로그인</a>
       
    </div>      
 </body>
