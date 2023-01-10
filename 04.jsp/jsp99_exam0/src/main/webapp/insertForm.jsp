@@ -91,7 +91,7 @@
 				</tr>	
 				<tr>
 					<td>고객등급(A:VIP,B:일반,C:직원)</td>
-					<td><input type="text" name="grade" ></td>
+					<td><input type="text" name="grade" required></td>
 				</tr>	
 				<tr>
 					<td>도시코드</td>

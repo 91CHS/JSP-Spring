@@ -59,6 +59,12 @@
 			String grade    = rs.getString(6);
 			String city     = rs.getString(7);
 			
+			
+		      if(rs.getString(6).equals("A")) grade="VIP";
+		      else if(rs.getString(6).equals("B")) grade="일반";
+		      else grade="직원";
+		      
+			
 %>
 		<tr>
 			<td><a href="updateForm.jsp?custno=<%=custno%>"><%=custno%></a></td>

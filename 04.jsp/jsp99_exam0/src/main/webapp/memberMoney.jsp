@@ -56,7 +56,14 @@
 				String custname = rs.getString(2);
 				String grade    = rs.getString(3);
 				int sales       = rs.getInt(4);
-		
+				
+			      if(rs.getString(3).equals("A")) grade="VIP";
+			      else if(rs.getString(3).equals("B")) grade="일반";
+			      else grade="직원";
+				
+				
+				
+				
 %>
 		<tr>
 			<td><%= custno %></a></td>
