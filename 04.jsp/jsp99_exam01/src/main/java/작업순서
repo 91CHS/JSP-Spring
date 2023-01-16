@@ -1,0 +1,60 @@
+1. table생성
+
+jsp06_board참조
+
+2. package 생성
+   
+   a. action
+   b. controller
+   c. dao
+   d. service
+   e. vo
+   
+3. jsp생성
+
+   a. index.jsp
+   b. list.jsp
+   c. insert.jsp
+   d. update.jsp
+   e. delete.jsp
+   
+3. vo생성
+   
+   a. ActionFoward
+      - isDirect
+      - setPath
+   
+   b. MemberVO
+      
+      - 각 filed private
+      - setter/getter
+      - toString
+   
+   c. MoneyVO 
+      
+      - 각 filed private
+      - setter/getter
+      - toString
+         
+4. controller
+
+   a. doGet/doPost -> doProcess
+   b. doProcess
+   
+      ... req.setCharacterEncoding("utf-8");
+      ... String requestURI = req.getRequestURI();
+	  ... String contextPath = req.getContextPath();
+	  ... String command = requestURI.substring(contextPath.length());
+      
+      [command]
+      ... writeForm.do -> write.jsp
+      ... write.do -> writeAction -> list.do -> list.jsp
+      ... list.do -> list.jsp -> updateForm.do -> update.jsp -> update.do -> list.jsp
+      ... list.jsp -> deleteForm.do -> delete.jsp -> delete.do -> list.jsp
+      ... sales.do -> sales.jsp
+      
+      
+   
+   
+   
+     
